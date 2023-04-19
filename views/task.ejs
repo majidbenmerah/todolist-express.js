@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title><%= task.titre %></title>
+</head>
+<body>
+
+    <div class="back"><a href="/">&#x27F5; Retour</a></div>
+
+
+    <div class="container">
+        <div class="liste">
+            <h3 class="taskTitle"><%= task.titre %></h3>
+
+            <div class="task">
+                <p class="p-title">Crée le <%= task.createdAt %> | <b><%= task.titre %></b></p>
+                <p class="p-description"><%= task.description %></p>
+                <p data-id="<%= task._id %>" class="p-title-red">Supprimer</p>
+            </div>
+        </div>
+
+    </div>
+    
+    <script>
+
+        const deleteBtn = document.querySelector('.p-title-red')
+
+        deleteBtn.addEventListener('click', event => {
+            const reqURL = `/delete/${event.target.dataset.id}`
+            
+            fetch(reqURL, { method: "DELETE" })
+ 
+
+            .then(response => response.json())
+            .then( data => window.location.href = '/' )
+            .catch(error => console.log(error))
+        })
+
+    </script>
+
+
+</body>
+</html>

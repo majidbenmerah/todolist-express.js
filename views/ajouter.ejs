@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>
+        <%= title %>
+    </title>
+</head>
+<body>
+
+    <div class="back"><a href="/">&#x27F5; Retour</a></div>
+
+    <div class="container">
+        <h1 class="title">Ajouter une nouvelle tâche</h1>
+
+        <div class="form-container">
+            <form action="/ajouter" method="post">
+                <label for="titre">Titre</label>
+                <br>
+                <input type="text" name="titre" id="titre">
+                <br><br>
+                <label for="description">description</label>
+                <br>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <br><br>
+                <div class="div-btn">
+                    <button type="submit" class="btn">Ajouter</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    
+</body>
+</html>

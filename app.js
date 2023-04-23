@@ -1,13 +1,19 @@
+require('dotenv').config()
+
+const formatDistanceToNow = require('date-fns/formatDistanceToNow')
+
+
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const morgan = require('morgan')
 const tasksController = require('./controllers/tasksController.js')
-const dbURI = "mongodb+srv://root:root@cluster0.ufjqden.mongodb.net/todolist?retryWrites=true&w=majority"
+const dbURI = `mongodb+srv://${process.env.MANGO_USER}:${process.env.MANGO_PASSWORD}@cluster0.ufjqden.mongodb.net/todolist?retryWrites=true&w=majority`
+
 
 
 mongoose.connect(dbURI)
-.then(() => { app.listen(3000); console.log("connecté à mongodb")})
+.then(() => {app.listen(process.env.PORT); console.log("connecté à mongodb")})
 .catch(error => console.log(error))
 
 
@@ -19,6 +25,10 @@ app.use(express.static('public'))
 
 app.use(morgan('dev'))
 
+app.use((req, res, next) => {
+    res.locals.formatDistanceToNow = formatDistanceToNow
+    next()
+})
 
 app.get('/', tasksController.tasks_index_get)
 

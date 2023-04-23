@@ -20,7 +20,7 @@
                    
                     <a href="/tasks/<%= tasks[i]._id%>">
                         <div class="task">
-                            <p class="p-title">Crée le <%= tasks[i].createdAt %> | <b><%= tasks[i].titre %></b></p>
+                            <p class="p-title"> <%= locals.formatDistanceToNow(new Date(tasks[i].createdAt), {addSuffix: true}) %> | <b><%= tasks[i].titre %></b></p>
                             <p class="p-description"><%= tasks[i].description %></p>
                         </div>
                     </a>

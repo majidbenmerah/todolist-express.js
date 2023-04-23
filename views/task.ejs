@@ -14,7 +14,7 @@
             <h3 class="taskTitle"><%= task.titre %></h3>
 
             <div class="task">
-                <p class="p-title">Crée le <%= task.createdAt %> | <b><%= task.titre %></b></p>
+                <p class="p-title"><%= locals.formatDistanceToNow(new Date(task.createdAt), {addSuffix: true}) %> | <b><%= task.titre %></b></p>
                 <p class="p-description"><%= task.description %></p>
                 <p data-id="<%= task._id %>" class="p-title-red">Supprimer</p>
             </div>
